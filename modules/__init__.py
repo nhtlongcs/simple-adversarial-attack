@@ -8,3 +8,4 @@ from .utils import (
     device,
     idx2label,
 )
+from .models import *
