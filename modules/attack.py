@@ -4,8 +4,8 @@ import torchvision.utils
 
 from tqdm.notebook import tqdm
 
-from fgsm import fgsm_attack
-from utils import idx2label, imshow, device
+from .fgsm import fgsm_attack
+from .utils import idx2label, imshow, device
 
 loss = nn.CrossEntropyLoss()
 

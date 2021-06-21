@@ -1,10 +1,9 @@
 import torchvision.utils
-from utils import imshow
 from tqdm.notebook import tqdm
 
 import torch
 
-from utils import idx2label, device
+from .utils import idx2label, device, imshow
 
 
 def eval(
