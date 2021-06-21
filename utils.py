@@ -1,6 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import torchvision.datasets as dataset
+import torch
+import json
+
+class_idx = json.load(open("./data/imagenet_class_index.json"))
+idx2label = [class_idx[str(k)][1] for k in range(len(class_idx))]
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def image_folder_dataset(root, transform, idx2label):
