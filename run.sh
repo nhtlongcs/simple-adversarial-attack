@@ -1,1 +1,0 @@
-# python scripts/neete2imnet.py data/imagenette2/train/

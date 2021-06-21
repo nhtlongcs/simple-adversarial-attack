@@ -4,17 +4,11 @@ from tqdm.notebook import tqdm
 
 import torch
 
-from utils import idx2label
+from utils import idx2label, device
 
 
 def eval(
-    model,
-    viz=False,
-    dataset=None,
-    loader=None,
-    verbose=False,
-    batch_size=1,
-    device="cpu",
+    model, viz=False, dataset=None, loader=None, verbose=False, batch_size=1,
 ):
     print("True Image & Predicted Label")
 

@@ -5,7 +5,7 @@ import torchvision.utils
 from tqdm.notebook import tqdm
 
 from fgsm import fgsm_attack
-from utils import idx2label, imshow
+from utils import idx2label, imshow, device
 
 loss = nn.CrossEntropyLoss()
 
@@ -16,7 +16,6 @@ def attack(
     dataset=None,
     loader=None,
     batch_size=1,
-    device="cpu",
     verbose=False,
     attack_times=1000,
     eps=0.007,
