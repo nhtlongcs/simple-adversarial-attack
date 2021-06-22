@@ -44,7 +44,7 @@ def attack(
         correct += (pre == labels).sum()
         total += 1
         if return_batch_ls:
-            attack_batchs += [(images.detach(), labels)]
+            attack_batchs += [(images.detach(), labels.detach())]
         if viz:
             imshow(
                 torchvision.utils.make_grid(images.cpu().data, normalize=True),
