@@ -19,6 +19,7 @@ def attack(
     verbose=False,
     attack_times=1000,
     eps=0.007,
+    return_batch_ls=False,
 ):
     print("Attack Image & Predicted Label")
 
@@ -26,6 +27,7 @@ def attack(
     correct = 0
     total = 0
     attack_total = 0
+    attack_batchs = []
     pbar = tqdm(loader, total=len(dataset) // batch_size) if verbose else loader
     for images, labels in pbar:
         for t in range(attack_times):
@@ -41,6 +43,8 @@ def attack(
         attack_total += t + 1
         correct += (pre == labels).sum()
         total += 1
+        if return_batch_ls:
+            attack_batchs += [(images.detach(), labels)]
         if viz:
             imshow(
                 torchvision.utils.make_grid(images.cpu().data, normalize=True),
@@ -49,4 +53,5 @@ def attack(
 
     print("Accuracy of test text: %f %%" % (100 * float(correct) / total / batch_size))
     print("Avg attack time is: %f " % (attack_total / total))
-
+    if return_batch_ls:
+        return attack_batchs
