@@ -16,4 +16,3 @@ def fgsm_attack(model, loss, images, labels, eps, device):
     attack_images = torch.clamp(attack_images, 0, 1)
 
     return attack_images.detach()
-
