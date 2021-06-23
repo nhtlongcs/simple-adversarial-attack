@@ -8,6 +8,13 @@ from tqdm.notebook import tqdm
 from .fgsm import fgsm_attack
 from .utils import device
 
+def adversarial_examples(model, criterion, inputs, labels, eps, device):
+    model.eval()
+    adv_inputs = fgsm_attack(model, criterion, inputs, labels, eps, device)
+    model.train()
+
+    return adv_inputs
+
 def adversarial_train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_inception=False, eps=0.007, alpha=0.5):
     since = time.time()
 
@@ -53,9 +60,9 @@ def adversarial_train_model(model, dataloaders, criterion, optimizer, num_epochs
                         loss2 = criterion(aux_outputs, labels)
                         _loss = loss1 + 0.4*loss2
 
-                        model.eval()
-                        adv_inputs = fgsm_attack(model, criterion, inputs, labels, eps, device)
-                        model.train()
+                        # generate adversarial examples
+                        adv_inputs = adversarial_examples(model, criterion, inputs, labels, eps, device)
+
                         adv_outputs, adv_aux_outputs = model(adv_inputs)
                         adv_loss1 = criterion(adv_outputs, labels)
                         adv_loss2 = criterion(adv_aux_outputs, labels)
@@ -64,7 +71,16 @@ def adversarial_train_model(model, dataloaders, criterion, optimizer, num_epochs
                         loss = alpha * _loss + (1 - alpha) * adv_loss
                     else:
                         outputs = model(inputs)
-                        loss = criterion(outputs, labels)
+                        _loss = criterion(outputs, labels)
+
+                        # generate adversarial examples
+                        adv_inputs = adversarial_examples(model, criterion, inputs, labels, eps, device)
+                        
+                        adv_outputs = model(adv_inputs)
+                        adv_loss = criterion(adv_outputs, labels)
+
+                        loss = alpha * _loss + (1 - alpha) * adv_loss
+
 
                     _, preds = torch.max(outputs, 1)
 
