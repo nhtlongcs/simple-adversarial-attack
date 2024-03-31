@@ -20,15 +20,15 @@ This repository serves as a comprehensive resource for studying, experimenting w
 **Ensemble Defense**: A defense strategy that combines multiple models to make predictions, making it more challenging for attackers to generate effective adversarial examples.
 
 ## Learning Material
-Presentation: A comprehensive slide that covers the fundamentals of adversarial attacks and defenses, including key concepts, methods, and real-world applications, written in Vietnamese.
+[Presentation](slide.pdf): A comprehensive slide that covers the fundamentals of adversarial attacks and defenses, including key concepts, methods, and real-world applications, written in Vietnamese.
 
 Colab Notebooks: Interactive Colab notebooks for hands-on experimentation with attack and defense methods directly in your browser. 
 - Attack methods
 
-  [![Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nhtlongcs/simple-adversarial-attack/blob/main/FGSM_attacks.ipynb)
+  [![Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nhtlongcs/simple-adversarial-attack/blob/main/notebooks/FGSM_attacks.ipynb)
 - Defense methods
 
-  [![Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nhtlongcs/simple-adversarial-attack/blob/main/FGSM_defense.ipynb) 
+  [![Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nhtlongcs/simple-adversarial-attack/blob/main/notebooks/FGSM_defense.ipynb) 
 
 This repository: The most effective learning method is directly from the source code. Dive into the codebase to understand the implementation details of each attack and defense method.
 
